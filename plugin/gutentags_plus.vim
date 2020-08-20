@@ -230,29 +230,7 @@ function! s:GscopeFind(bang, what, ...)
 	let ncol = col('.')
 	let nrow = line('.')
 	let nbuf = winbufnr('%')
-	let text = ''
-	if a:what == '0' || a:what == 's'
-		let text = 'symbol "'.keyword.'"'
-	elseif a:what == '1' || a:what == 'g'
-		let text = 'definition of "'.keyword.'"'
-	elseif a:what == '2' || a:what == 'd'
-		let text = 'functions called by "'.keyword.'"'
-	elseif a:what == '3' || a:what == 'c'
-		let text = 'functions calling "'.keyword.'"'
-	elseif a:what == '4' || a:what == 't'
-		let text = 'string "'.keyword.'"'
-	elseif a:what == '6' || a:what == 'e'
-		let text = 'egrep "'.keyword.'"'
-	elseif a:what == '7' || a:what == 'f'
-		let text = 'file "'.keyword.'"'
-	elseif a:what == '8' || a:what == 'i'
-		let text = 'files including "'.keyword.'"'
-	elseif a:what == '9' || a:what == 'a'
-		let text = 'assigned "'.keyword.'"'
-	endif
-	let text = "[cscope ".a:what.": ".text."]"
 	let title = "GscopeFind ".a:what.' "'.keyword.'"'
-	silent exec 'cexpr text'
 	if has('nvim') == 0 && (v:version >= 800 || has('patch-7.4.2210'))
 		call setqflist([], 'a', {'title':title})
 	elseif has('nvim') && has('nvim-0.2.2')
